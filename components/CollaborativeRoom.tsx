@@ -15,8 +15,7 @@ import { updateDocument } from '@/lib/actions/rooms.action';
 
 //set up live blocks authentication follow the live blocks docs
 
-const CollaborativeRoom = ({roomId, roomMetadata}: CollaborativeRoomProps) => {
-    const currentUserType = 'editor';
+const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType}: CollaborativeRoomProps) => {
     const [editing, setEditing] = useState(false);
     const [loading, setLoading] = useState(false);
     const [documentTitle, setdocumentTitle] = useState(roomMetadata.title)
@@ -103,7 +102,7 @@ const CollaborativeRoom = ({roomId, roomMetadata}: CollaborativeRoomProps) => {
                             <UserButton />
                         </SignedIn>
                     </Header>
-                    <Editor />
+                    <Editor roomId={roomId} currentUserType={currentUserType}/>
                 </div>
             </ClientSideSuspense>
         </RoomProvider>
