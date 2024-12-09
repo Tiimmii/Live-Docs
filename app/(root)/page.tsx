@@ -15,7 +15,7 @@ import { currentUser } from '@clerk/nextjs/server'
 const page = async () => {
   const documents = []
   const clerkUser = await currentUser();
-  if(!clerkUser) redirect('sign-in') 
+  if(!clerkUser) redirect('sign-in'); 
 
   return (
     <main className='home-container'>
