@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import {
     RoomProvider,
     ClientSideSuspense,
@@ -12,9 +12,14 @@ import ActiveCollaborators from './ActiveCollaborators';
 
 //set up live blocks authentication follow the live blocks docs
 
-const CollaborativeRoom = () => {
+const CollaborativeRoom = ({roomId, roomMetadata}: CollaborativeRoomProps) => {
+    const [editing, setEditing] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [documnetTitle, setdocumentTitle] = useState(roomMetadata.title)
+
+    const containerRef = useRef<HTMLDivElement>(null);
     return (
-        <RoomProvider id="my-room">
+        <RoomProvider id={roomId}>
             <ClientSideSuspense fallback={<Loaders />}>
                 <div className='collaborative-room'>
                     <Header>
