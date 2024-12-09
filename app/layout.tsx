@@ -37,9 +37,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             fontSans.variable
           )}
         >
-            <Provider>
-              {children}
-            </Provider>
+          <Provider>
+            {children}
+          </Provider>
+              
+
         </body>
       </html>
     </ClerkProvider>
