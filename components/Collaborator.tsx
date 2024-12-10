@@ -3,10 +3,13 @@ import React, { useState } from 'react'
 import UserTypeSelector from './UserTypeSelector';
 import { Button } from './ui/button';
 import { removeCollaborator, updateDocumentAccess } from '@/lib/actions/rooms.action';
+import { useSelf } from '@liveblocks/react/suspense';
 
 const Collaborator = ({roomId, creatorId, collaborator, email, user}: CollaboratorProps) => {
     const [userType, setUserType] = useState(collaborator.userType || 'viewer');
     const [loading, setLoading] = useState(false);
+    const clerkUser = useSelf();
+    console.log(clerkUser.id)
 
     const shareDocumentHandler = async (type: string) => {
         setLoading(true);
@@ -51,11 +54,13 @@ const Collaborator = ({roomId, creatorId, collaborator, email, user}: Collaborat
         </div>
         {creatorId === collaborator.id? (
                 <p className='text-sm text-blue-100'>Owner</p>
+            ): clerkUser.id === collaborator.email? (
+                <p className='text-sm text-blue-100'>User</p>
             ):(
                <div className='flex items-center'>
                     <UserTypeSelector
                         userType={userType as UserType}
-                        setUserType={setUserType || 'viewer'}
+                        setUserType= {setUserType}
                         onClickHandler={shareDocumentHandler}
                     />  
                     <Button type='button' onClick={()=>removeCollaboratorHandler(collaborator.email)}>

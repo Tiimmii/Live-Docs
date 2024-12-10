@@ -87,23 +87,23 @@ export const getDocument = async ({ roomId, userId }: { roomId: string; userId: 
         usersAccesses
       })
   
-    //   if(room) {
-    //     const notificationId = nanoid();
+      if(room) {
+        const notificationId = nanoid();
   
-    //     await liveblocks.triggerInboxNotification({
-    //       userId: email,
-    //       kind: '$documentAccess',
-    //       subjectId: notificationId,
-    //       activityData: {
-    //         userType,
-    //         title: `You have been granted ${userType} access to the document by ${updatedBy.name}`,
-    //         updatedBy: updatedBy.name,
-    //         avatar: updatedBy.avatar,
-    //         email: updatedBy.email
-    //       },
-    //       roomId
-    //     })
-    //   }
+        await liveblocks.triggerInboxNotification({
+          userId: email,
+          kind: '$documentAccess',
+          subjectId: notificationId,
+          activityData: {
+            userType,
+            title: `You have been granted ${userType} access to the document by ${updatedBy.name}`,
+            updatedBy: updatedBy.name,
+            avatar: updatedBy.avatar,
+            email: updatedBy.email
+          },
+          roomId
+        })
+      }
   
       revalidatePath(`/documents/${roomId}`);
       return parseStringify(room);

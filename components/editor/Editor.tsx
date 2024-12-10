@@ -36,7 +36,7 @@ export function Editor({roomId, currentUserType}: {roomId: string, currentUserTy
       throw error;
     },
     theme: Theme,
-    editable: currentUserType === 'editor',
+    editable: currentUserType === 'editor' || currentUserType === 'creator',
   });
 
 
@@ -45,7 +45,7 @@ export function Editor({roomId, currentUserType}: {roomId: string, currentUserTy
       <div className="editor-container size-full">
         <div className="toolbar-wrapper flex min-w-full justify-between">
           <ToolbarPlugin />
-          {currentUserType === 'editor' && <DeleteModal roomId={roomId} />}
+          {currentUserType === 'creator' && <DeleteModal roomId={roomId} />}
         </div>
 
         <div className="editor-wrapper flex flex-col items-center justify-start">
@@ -58,7 +58,7 @@ export function Editor({roomId, currentUserType}: {roomId: string, currentUserTy
                 placeholder={<Placeholder />}
                 ErrorBoundary={LexicalErrorBoundary}
               />
-              {currentUserType === 'editor' && <FloatingToolbar />}
+              {currentUserType === 'editor' || currentUserType === 'creator' && <FloatingToolbar />}
               <HistoryPlugin />
               <AutoFocusPlugin />
             </div>

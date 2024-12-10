@@ -21,12 +21,19 @@ const page = async ({ params: { id }}: SearchParamProps) => {
 
   const usersData = users.map((user: User) => ({
     ...user,
-    userType: room.usersAccesses[user.email]?.includes('room:write')
+    userType: user.id === room.creatorId
+      ? 'creator'
+      : room.usersAccesses[user.email]?.includes('room:write')
       ? 'editor'
       : 'viewer'
-  }))
-
-  const currentUserType = room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes('room:write') ? 'editor' : 'viewer';
+  }));
+  
+  const currentUserType = clerkUser.id === room.creatorId
+    ? 'creator'
+    : room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes('room:write')
+    ? 'editor'
+    : 'viewer';
+    
   return (
     <main className='flex w-full flex-col items-center'>
       <CollaborativeRoom roomId={room.id} roomMetadata={room.metadata} users={usersData} currentUserType={currentUserType}/>

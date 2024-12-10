@@ -22,7 +22,7 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType}: Colla
     const [documentTitle, setdocumentTitle] = useState(roomMetadata.title)
 
     const containerRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const updateTitleHandler = async (e:React.KeyboardEvent<HTMLInputElement>)=>{
         if(e.key === 'Enter'){
@@ -78,7 +78,7 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType}: Colla
                             ): (
                                 <><p className='document-title'>{documentTitle}</p></>
                             )}
-                            {currentUserType ==='editor'&& !editing &&(
+                            {currentUserType ==='editor' || currentUserType === 'creator' && !editing &&(
                                 <Image
                                     src={'/assets/icons/edit.svg'}
                                     alt='edit'
@@ -88,15 +88,15 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType}: Colla
                                     className='pointer'
                                 />
                             )}
-                            {currentUserType !=='editor'&& !editing &&(
+                            {currentUserType ==='viewer' && !editing &&(
                                 <p className='view-only-tag'>View only</p>
                             )}
                             {loading && <p className='text-sm text-gray-400'>saving...</p>}
                         </div>
                         <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
-                            <ActiveCollaborators/>
 
                             <ShareModal roomId={roomId} collaborators={users} creatorId={roomMetadata.creatorId} currentUserType={currentUserType}/>
+                            <ActiveCollaborators/>
                         </div>
                         <SignedOut>
                             <SignInButton />
