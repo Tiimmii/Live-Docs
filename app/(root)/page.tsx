@@ -11,7 +11,7 @@ import { getDocuments } from '@/lib/actions/rooms.action'
 import { metadata } from '../layout'
 import Link from 'next/link'
 import { dateConverter } from '@/lib/utils'
-import DeleteModal from '@/components/DeleteModal'
+import {  DeleteModal } from '@/components/DeleteModal'
 
 //make sure to install shadn and add button component
 //npm i jsm-editor
