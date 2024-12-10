@@ -12,6 +12,7 @@ import ActiveCollaborators from './ActiveCollaborators';
 import { Input } from './ui/input';
 import Image from 'next/image';
 import { updateDocument } from '@/lib/actions/rooms.action';
+import ShareModal from './ShareModal';
 
 //set up live blocks authentication follow the live blocks docs
 
@@ -94,6 +95,8 @@ const CollaborativeRoom = ({roomId, roomMetadata, users, currentUserType}: Colla
                         </div>
                         <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
                             <ActiveCollaborators/>
+
+                            <ShareModal roomId={roomId} collaborators={users} creatorId={roomMetadata.creatorId} currentUserType={currentUserType}/>
                         </div>
                         <SignedOut>
                             <SignInButton />

@@ -11,6 +11,7 @@ import { getDocuments } from '@/lib/actions/rooms.action'
 import { metadata } from '../layout'
 import Link from 'next/link'
 import { dateConverter } from '@/lib/utils'
+import DeleteModal from '@/components/DeleteModal'
 
 //make sure to install shadn and add button component
 //npm i jsm-editor
@@ -55,6 +56,7 @@ const page = async () => {
                     <p className='text-sm font-light text-blue-100'>Created about {dateConverter(createdAt)}</p>
                   </div>
                 </Link>
+                <DeleteModal roomId={id}/>
               </li>
             ))}
           </ul>
