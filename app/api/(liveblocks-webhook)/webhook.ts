@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       userId,
     });
 
-    console.log(inboxNotification)
+    console.log('inboxnot: ',inboxNotification)
 
   //   // Implement your email sending logic
   //   const emailAddress = getUserEmail(userId); // Replace with your logic
