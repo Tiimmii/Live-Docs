@@ -20,7 +20,7 @@ import Notifications from '@/components/Notifications'
 
 const page = async () => {
   const clerkUser = await currentUser();
-  if(!clerkUser) redirect('sign-in'); 
+  if(!clerkUser) redirect('sign-in');
 
   const roomDocuments = await getDocuments(clerkUser.emailAddresses[0].emailAddress)
 
@@ -38,7 +38,7 @@ const page = async () => {
         <div className='document-list-container'>
           <div className='document-list-title'>
             <h3 className='text-28-semibold'>All documents</h3>
-            <AddDocumentBtn userId={clerkUser.id} name={clerkUser.username} email={clerkUser.emailAddresses[0].emailAddress}/>
+            <AddDocumentBtn userId={clerkUser.id} name={`${clerkUser.firstName} ${clerkUser.lastName}`} email={clerkUser.emailAddresses[0].emailAddress}/>
           </div>
           <ul className='document-ul'>
             {roomDocuments.data.map(({ id, metadata, createdAt }: any)=>(
@@ -57,7 +57,7 @@ const page = async () => {
                     {clerkUser.id === metadata.creatorId? (
                       <p className='text-sm font-light text-blue-100'>Created by you about {dateConverter(createdAt)}</p>
                     ): (
-                      <p className='text-sm font-light text-blue-100'>Created by {metadata.email} about {dateConverter(createdAt)}</p>
+                      <p className='text-sm font-light text-blue-100'>Created by {metadata.name} about {dateConverter(createdAt)}</p>
                     )}
                   </div>
                 </Link>
@@ -75,7 +75,7 @@ const page = async () => {
             height={40}
             className='mx-auto'
           />
-          <AddDocumentBtn userId={clerkUser.id} name={clerkUser.username} email={clerkUser.emailAddresses[0].emailAddress}/>
+          <AddDocumentBtn userId={clerkUser.id} name={`${clerkUser.firstName} ${clerkUser.lastName}`} email={clerkUser.emailAddresses[0].emailAddress}/>
         </div>
         )}
     </main>
