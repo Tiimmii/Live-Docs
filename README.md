@@ -33,22 +33,22 @@ npm run dev
 </p>
 
 <p>
-   Add Live comments with other users
+   Add Live comments with other <br/>
   <img src='public/images/comments.png' alt='dashboard image'/>
 </p>
 
 <p>
-   Select from thousands of emojis
+   Select from thousands of emojis<br/>
   <img src='public/images/emojis.png' alt='dashboard image'/>
 </p>
 
 <p>
-   Share with other users
+   Share with other users<br/>
   <img src='public/images/share.png' alt='dashboard image'/>
 </p>
 
 <p>
-   Found a bug? Feel free to report
+   Found a bug? Feel free to report<br/>
   <img src='public/images/bug.png' alt='dashboard image'/>
 </p>
 
