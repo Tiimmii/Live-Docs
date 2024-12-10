@@ -39,12 +39,9 @@ const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: Share
         setLoading(false);
     }
     return (
-        <Dialog open={open} onOpenChange={() => {
+        <Dialog open={open} onOpenChange={(isOpen) => {
             if (currentUserType !== 'viewer') {
-                setOpen(true);
-            }
-            else{
-                setOpen(false)
+                setOpen(isOpen);
             }
         }}>
             <DialogTrigger>
