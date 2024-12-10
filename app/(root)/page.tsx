@@ -12,6 +12,7 @@ import { metadata } from '../layout'
 import Link from 'next/link'
 import { dateConverter } from '@/lib/utils'
 import {  DeleteModal } from '@/components/DeleteModal'
+import Notifications from '@/components/Notifications'
 
 //make sure to install shadn and add button component
 //npm i jsm-editor
@@ -27,7 +28,7 @@ const page = async () => {
     <main className='home-container'>
       <Header className='sticky left-0 top-0'>
         <div className='flex items-center gap-2 lg:gap-4'>
-          Notification
+          <Notifications />
           <SignedIn>
             <UserButton/>
           </SignedIn>
