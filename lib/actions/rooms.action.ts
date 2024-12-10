@@ -6,11 +6,12 @@ import { getAccessType, parseStringify } from '../utils';
 import { redirect } from 'next/navigation';
 
 //npm install nanoid for id generator
-export const createDocument = async({userId, email}:CreateDocumentParams)=>{
+export const createDocument = async({userId, name, email}:CreateDocumentParams)=>{
     const roomId = nanoid();
 
     const metadata = {
         creatorId: userId,
+        name,
         email,
         title: 'untitled'
     }

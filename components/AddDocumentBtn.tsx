@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { createDocument } from '@/lib/actions/rooms.action';
 import { useRouter } from 'next/navigation';
 
-const AddDocumentBtn = ({userId, email}: AddDocumentBtnProps) => {
+const AddDocumentBtn = ({userId, name, email}: AddDocumentBtnProps) => {
   const router = useRouter();
 
   const addDocumentHandler = async()=>{
     try {
-      const room = await createDocument({userId, email});
+      const room = await createDocument({userId, name, email});
       if(room) router.push(`/documents/${room.id}`)
     } catch (error) {
       console.log(error)
