@@ -10,6 +10,7 @@ const page = async ({ params: { id }}: SearchParamProps) => {
   const clerkUser = await currentUser();
   if(!clerkUser) redirect('/sign-in')
 
+
   const room = await getDocument({
     roomId: id,
     userId: clerkUser.emailAddresses[0].emailAddress,
@@ -21,19 +22,20 @@ const page = async ({ params: { id }}: SearchParamProps) => {
 
   const usersData = users.map((user: User) => ({
     ...user,
-    userType: user.id === room.creatorId
+    userType: user.id === room.metadata.creatorId
       ? 'creator'
       : room.usersAccesses[user.email]?.includes('room:write')
       ? 'editor'
       : 'viewer'
   }));
   
-  const currentUserType = clerkUser.id === room.creatorId
+  const currentUserType = clerkUser.id === room.metadata.creatorId
     ? 'creator'
     : room.usersAccesses[clerkUser.emailAddresses[0].emailAddress]?.includes('room:write')
     ? 'editor'
     : 'viewer';
-    
+
+
   return (
     <main className='flex w-full flex-col items-center'>
       <CollaborativeRoom roomId={room.id} roomMetadata={room.metadata} users={usersData} currentUserType={currentUserType}/>

@@ -96,7 +96,7 @@ export const getDocument = async ({ roomId, userId }: { roomId: string; userId: 
           subjectId: notificationId,
           activityData: {
             userType,
-            title: `You have been granted ${userType} access to the document by ${updatedBy.name}`,
+            title: `You have been granted ${userType} access to the document ${room.metadata.title} by ${updatedBy.name}`,
             updatedBy: updatedBy.name,
             avatar: updatedBy.avatar,
             email: updatedBy.email

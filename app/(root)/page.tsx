@@ -57,7 +57,7 @@ const page = async () => {
                     <p className='text-sm font-light text-blue-100'>Created about {dateConverter(createdAt)}</p>
                   </div>
                 </Link>
-                <DeleteModal roomId={id}/>
+                {clerkUser.id === metadata.creatorId && <DeleteModal roomId={id}/>}
               </li>
             ))}
           </ul>
